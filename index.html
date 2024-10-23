@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    class TrieNode {
+      constructor() {
+        this.children = {};
+        this.endOfWord = false;
+      }
+    }
+
+    class Tries {
+      constructor() {
+        this.root = new TrieNode();
+      }
+      insert(word) {
+        let cur = this.root;
+        for (let str of word) {
+          if (!cur.children[str]) {
+            cur.children[str] = new TrieNode();
+          }
+          cur = cur.children[str];
+        }
+        cur.endOfWord = true;
+      }
+      search(word) {
+        let cur = this.root;
+        for (let str of word) {
+          if (!cur.children[str]) {
+            return false;
+          }
+          cur = cur.children[str];
+        }
+        return cur.endOfWord;
+      }
+    }
+    const obj = new Tries();
+    console.log(obj)
+     obj.insert("he");
+     obj.insert("helo")
+    // 
+    // console.log(obj.search("Helloo"));
+  </script>
+</html>
